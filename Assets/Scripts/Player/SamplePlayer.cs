@@ -1,23 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/*
+    Written by F
+    Licensed according to license in Assets/Licenses/Licence-T.txt
+    ***
+    Not meant to make it into any part of the final product
+*/
 public class SamplePlayer : Player
 {
     public override void Hit()
     {
         Debug.Log("Ouch!");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
