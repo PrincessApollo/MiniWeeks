@@ -3,7 +3,7 @@ using static UnityEngine.Input;
 
 /*
     Written by F
-    Licensed according to license in Assets/Licenses/Licence-T.txt
+    Licensed according to license https://static.princessapollo.se/licenses/mit-t.txt
     ***
     Not meant to make it into any part of the final product
 */
