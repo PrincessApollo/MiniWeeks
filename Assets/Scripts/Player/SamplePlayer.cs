@@ -10,5 +10,6 @@ public class SamplePlayer : Player
     public override void Hit()
     {
         Debug.Log("Ouch!");
+        this.Respawn();
     }
 }
