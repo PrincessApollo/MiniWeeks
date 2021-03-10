@@ -10,80 +10,93 @@ public class playerMovement : MonoBehaviour
     public float movementSpeedMultiplier = 10;
     public Rigidbody2D rb;
 
-    public Transform groundObject;
-    public bool isGrounded; float groundCheckRadius = 0.05f, jumpForce = 200f;
+
+    public bool isGrounded; float jumpForce = 200f;
 
     public Slider staminaBar;
 
-    BoxCollider2D playerCollider;
-    Vector2 collSize;
-
-    public bool animatedDash = true;
-    void Start()
+    public float savedDir = 1;
+    public float dashRange = 0.5f, dashSwitch;
+    private enum State
     {
-        playerCollider = GetComponentInChildren<BoxCollider2D>();
-        collSize = playerCollider.size;
+        Normal,
+        Dashing,
+        Crouching
+    }
+    [SerializeField]
+    private State activeState;
+    void AWake()
+    {
+        activeState = State.Normal;
+    }
+    public void resetVelocity()
+    {
+        velocity = Vector3.zero;
     }
     void Update()
     {
-        staticVelocity = rb.velocity;
+        if(velocity.x != 0)
+        {
+            savedDir = velocity.x / Mathf.Abs(velocity.x);
+        }
 
-        #region movement_directional
-        velocity.x = Input.GetAxisRaw("Horizontal")* movementSpeedMultiplier;
-        rb.velocity = new Vector2(velocity.x, rb.velocity.y);
-        #endregion
+        switch (activeState)
+        {
+            case State.Normal:
+                staticVelocity = rb.velocity;
 
-        #region movement_jump
-        if (rb.velocity.y == 0)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-        if (Input.GetButtonDown("Jump")&&isGrounded)
-        {
-            rb.AddForce(jumpForce * transform.up);
-        }
-        #endregion
+                #region movement_directional
+                velocity.x = Input.GetAxisRaw("Horizontal") * movementSpeedMultiplier;
+                rb.velocity = new Vector2(velocity.x, rb.velocity.y);
+                #endregion
 
-        #region movement_daash
-        staminaBar.value += Time.deltaTime;
-        if (animatedDash)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && velocity.x != 0 && staminaBar.value > 1)
-            {
-                staminaBar.value -= 2;
-                rb.velocity = Mathf.Lerp(200, 0, 2f) * transform.right;
-            }
-        }
-        else
-        {
-            if(Input.GetKeyDown(KeyCode.LeftShift)&&velocity.x != 0 && staminaBar.value > 1)
-            {
-                staminaBar.value-=2;
-                rb.AddForce(700 * velocity.x * transform.right);
-            }
-        }
-        #endregion
+                #region movement_jump
+                if (rb.velocity.y == 0)
+                {
+                    isGrounded = true;
+                }
+                else
+                {
+                    isGrounded = false;
+                }
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    rb.AddForce(jumpForce * transform.up);
+                }
+                #endregion
 
-        #region Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
+                #region movement_dash
+                staminaBar.value += Time.deltaTime;
 
-        }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    staminaBar.value -= 2;
+                    dashSwitch = dashRange;
+                    activeState = State.Dashing;
+                }
+                #endregion
 
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    activeState = State.Crouching;
+                }
+                break;
+            case State.Dashing:
+                dashSwitch -= Time.deltaTime;
+
+                rb.velocity = 50 * savedDir * transform.right;
+                if (dashSwitch < 0)
+                {
+                    activeState = State.Normal;
+                }
+                break;
+            case State.Crouching:
+
+                break;
         }
-        #endregion
     }
     private void OnDrawGizmosSelected()
     {   Gizmos.color = Color.green;
-
-        Gizmos.DrawWireSphere(groundObject.position, groundCheckRadius);
-
         Gizmos.DrawWireCube(transform.position, GetComponentInChildren<BoxCollider2D>().size);
     }
 }
