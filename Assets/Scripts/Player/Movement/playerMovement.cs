@@ -25,7 +25,7 @@ public class playerMovement : MonoBehaviour
     }
     [SerializeField]
     private State activeState;
-    void AWake()
+    void Awake()
     {
         activeState = State.Normal;
     }
