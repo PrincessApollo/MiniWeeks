@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
 
-    public bool isGrounded; float jumpForce = 200f;
+    public bool isGrounded; float jumpForce = 80;
 
     public Slider staminaBar;
 
@@ -39,33 +39,27 @@ public class playerMovement : MonoBehaviour
         {
             savedDir = velocity.x / Mathf.Abs(velocity.x);
         }
-
+        if (rb.velocity.y == 0)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
         switch (activeState)
         {
             case State.Normal:
                 staticVelocity = rb.velocity;
 
-                #region movement_directional
                 velocity.x = Input.GetAxisRaw("Horizontal") * movementSpeedMultiplier;
                 rb.velocity = new Vector2(velocity.x, rb.velocity.y);
-                #endregion
 
-                #region movement_jump
-                if (rb.velocity.y == 0)
-                {
-                    isGrounded = true;
-                }
-                else
-                {
-                    isGrounded = false;
-                }
-                if (Input.GetButtonDown("Jump") && isGrounded)
+                if (Input.GetKey(KeyCode.Space) && isGrounded)
                 {
                     rb.AddForce(jumpForce * transform.up);
                 }
-                #endregion
 
-                #region movement_dash
                 staminaBar.value += Time.deltaTime;
 
                 if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -74,7 +68,6 @@ public class playerMovement : MonoBehaviour
                     dashSwitch = dashRange;
                     activeState = State.Dashing;
                 }
-                #endregion
 
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
