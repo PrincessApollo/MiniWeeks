@@ -14,7 +14,7 @@ public class SamplePlayer : Player
     //new ControllScheme();
     private void Start()
     {
-        print(Controlls.Scheme.keys[CtlrPrefix + "-Punch"]);
+        print(Controls.Scheme.keys[CtlrPrefix + "-Punch"]);
     }
     public override void Hit(string source = "Unknown")
     {
@@ -35,7 +35,7 @@ public class SamplePlayer : Player
     }
     private void Update()
     {
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), Controlls.Scheme.keys[CtlrPrefix + "-Punch"])))
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), Controls.Scheme.keys[CtlrPrefix + "-Punch"])))
         {
             Punch();
         }
