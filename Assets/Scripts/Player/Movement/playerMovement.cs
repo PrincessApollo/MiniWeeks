@@ -7,13 +7,11 @@ public class playerMovement : MonoBehaviour
 {
     public Vector3 velocity;
     public Vector3 staticVelocity;
+    [Space(20)]
     public float movementSpeedMultiplier = 10;
-    public Rigidbody2D rb;
-
+    Rigidbody2D rb;
 
     public bool isGrounded; float jumpForce = 80;
-
-    public Slider staminaBar;
 
     public float savedDir = 1;
     public float dashRange = 0.5f, dashSwitch;
@@ -21,13 +19,35 @@ public class playerMovement : MonoBehaviour
     {
         Normal,
         Dashing,
-        Crouching
+        Crouching,
     }
+    private enum Keycodes
+    {
+        set1,
+        set2,
+    }
+    Keycodes inputPrefs;
+    string usedInput;
     [SerializeField]
     private State activeState;
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         activeState = State.Normal;
+        inputPrefs = Keycodes.set1;
+    }
+    private void Start()
+    {
+        switch (inputPrefs)
+        {
+            case Keycodes.set1:
+                usedInput = "Horizontal";
+                break;
+            case Keycodes.set2:
+                usedInput = "Vertical";
+                break;
+        }
     }
     public void resetVelocity()
     {
@@ -39,14 +59,7 @@ public class playerMovement : MonoBehaviour
         {
             savedDir = velocity.x / Mathf.Abs(velocity.x);
         }
-        if (rb.velocity.y == 0)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+
         switch (activeState)
         {
             case State.Normal:
@@ -60,36 +73,22 @@ public class playerMovement : MonoBehaviour
                     rb.AddForce(jumpForce * transform.up);
                 }
 
-                staminaBar.value += Time.deltaTime;
-
+                #region transitions
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
-                    staminaBar.value -= 2;
                     dashSwitch = dashRange;
-                    activeState = State.Dashing;
+                    //activeState = State.Dashing;
                 }
 
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
-                    activeState = State.Crouching;
+                    //activeState = State.Crouching;
                 }
                 break;
-            case State.Dashing:
-                dashSwitch -= Time.deltaTime;
-
-                rb.velocity = 50 * savedDir * transform.right;
-                if (dashSwitch < 0)
-                {
-                    activeState = State.Normal;
-                }
-                break;
-            case State.Crouching:
-
-                break;
+                #endregion
         }
     }
     private void OnDrawGizmosSelected()
     {   Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, GetComponentInChildren<BoxCollider2D>().size);
     }
 }
