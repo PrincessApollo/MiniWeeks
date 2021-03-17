@@ -35,7 +35,7 @@ public class playerMovement : MonoBehaviour
     }
     void Update()
     {
-        if(velocity.x != 0)
+        if (velocity.x != 0)
         {
             savedDir = velocity.x / Mathf.Abs(velocity.x);
         }
@@ -66,7 +66,7 @@ public class playerMovement : MonoBehaviour
                 #endregion
 
                 #region movement_dash
-                staminaBar.value += Time.deltaTime;
+                // staminaBar.value += Time.deltaTime;
 
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
@@ -96,7 +96,8 @@ public class playerMovement : MonoBehaviour
         }
     }
     private void OnDrawGizmosSelected()
-    {   Gizmos.color = Color.green;
+    {
+        Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, GetComponentInChildren<BoxCollider2D>().size);
     }
 }

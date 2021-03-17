@@ -11,4 +11,7 @@ public class Weapon : MonoBehaviour
         }
         
     }
+    public virtual void PrimaryAttack(){
+        
+    }
 }
