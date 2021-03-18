@@ -7,7 +7,7 @@ public abstract class Player : MonoBehaviour
 {
     public Weapon EquipedWeapon;
     public Collider2D ReachRegion;
-    public string CtlrPrefix = "PlayerOne";
+    public PlayerMovement.KeySets ControlSet;
     [SerializeField] protected bool blocking;
     public abstract void Punch();
     public abstract void Hit(string source = "Unknown");

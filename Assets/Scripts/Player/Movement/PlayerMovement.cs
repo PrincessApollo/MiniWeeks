@@ -20,13 +20,13 @@ public class PlayerMovement : MonoBehaviour
         Dashing,
         Crouching,
     }
-    private enum Keycodes // Ändra inte namnen, dessa är samma namn som används i kontrollfilen // F
+    public enum KeySets // Ändra inte namnen, dessa är samma namn som används i kontrollfilen // F
     {
         PlayerOne,
         PlayerTwo,
     }
     [SerializeField]
-    private Keycodes controlSet;
+    private KeySets controlSet;
     [SerializeField]
     private State activeState;
     void Awake()

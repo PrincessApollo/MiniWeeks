@@ -62,11 +62,11 @@ public class SamplePlayer : Player
     }
     private void Update()
     {
-        if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey(CtlrPrefix + "-Punch")))
+        if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey(ControlSet + "-Punch")))
         {
             Punch();
         }
-        blocking = Input.GetKey(Controls.Scheme.GetCodeFromKey(CtlrPrefix + "-Block"));
+        blocking = Input.GetKey(Controls.Scheme.GetCodeFromKey(ControlSet + "-Block"));
 
     }
 }
