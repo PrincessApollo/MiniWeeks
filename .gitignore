@@ -60,3 +60,4 @@ crashlytics-build.properties
 
 .vscode/settings.json
 *.ctrl
+Assets/controlls.ctrl.meta
