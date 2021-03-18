@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using PrincessApollo.Controls;
+﻿using PrincessApollo.Controls;
 using UnityEngine;
-using UnityEngine.UI;
 using static System.Convert;
 
 public class PlayerMovement : MonoBehaviour
