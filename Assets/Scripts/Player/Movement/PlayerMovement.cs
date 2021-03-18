@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         Dashing,
         Crouching,
     }
-    private enum Keycodes // Ändra inte namnen, dessa är samma namn som används i kontrollfilen
+    private enum Keycodes // Ändra inte namnen, dessa är samma namn som används i kontrollfilen // F
     {
         PlayerOne,
         PlayerTwo,
@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private State activeState;
     void Awake()
     {
-        print(ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Right")))); //TODO remove
         rb = GetComponent<Rigidbody2D>();
     }
     public void resetVelocity()
