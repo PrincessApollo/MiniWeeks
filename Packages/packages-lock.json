@@ -86,12 +86,13 @@
       }
     },
     "se.princessapollo.controlscheme": {
-      "version": "file:se.princessapollo.controlscheme",
+      "version": "https://github.com/FredrikAlHam/UnityControlSchemeFromJson.git",
       "depth": 0,
-      "source": "embedded",
+      "source": "git",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0"
-      }
+      },
+      "hash": "0f926b9e4bfda030016fbba39cfdd54d98d61fd3"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
