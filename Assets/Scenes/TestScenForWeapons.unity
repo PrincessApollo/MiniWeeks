@@ -507,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   staticVelocity: {x: 0, y: 0, z: 0}
-  movementSpeedMultiplier: 10
+  movementSpeedMultiplier: 1
   isGrounded: 0
   savedDir: 1
   dashRange: 0.5
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipedWeapon: {fileID: 0}
   ReachRegion: {fileID: 1495271745}
-  CtlrPrefix: PlayerOne
+  ControlSet: 0
   blocking: 0
 --- !u!212 &1253037341
 SpriteRenderer:
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipedWeapon: {fileID: 0}
   ReachRegion: {fileID: 884069006}
-  CtlrPrefix: PlayerTwo
+  ControlSet: 1
   blocking: 0
 --- !u!4 &1555655244
 Transform:
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   staticVelocity: {x: 0, y: 0, z: 0}
-  movementSpeedMultiplier: 10
+  movementSpeedMultiplier: 1
   isGrounded: 0
   savedDir: 1
   dashRange: 0.5
