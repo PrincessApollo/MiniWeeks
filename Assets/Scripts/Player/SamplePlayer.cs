@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
-using PrincessApollo.Controls;
-using Extensions;
-
-/*
+﻿/*
     Written in whole or in part by F
     Licensed in whole or in part according to license https://static.princessapollo.se/licenses/mit-t.txt
     ***
@@ -11,33 +6,22 @@ using Extensions;
 */
 public class SamplePlayer : Player
 {
+    public override void BlockedHit(string source = "Unknown")
+    {
+        base.BlockedHit(source);
+    }
+
     public override void Hit(string source = "Unknown")
     {
-        Debug.Log($"{gameObject.name} was hit by {source}");
-        if (!blocking)
-        {
-            Debug.Log($"{gameObject.name} blocked a hit by {source}");
-            this.Respawn();
-        }
+        base.Hit(source);
     }
 
     public override void Punch()
     {
-        Collider2D[] results = new Collider2D[100];
-        ReachRegion.OverlapCollider(new ContactFilter2D(), results);
-        foreach (Collider2D item in results.Where(x => (x != null && x.gameObject.TryGetComponent<Player>(out Player p))))
-        {
-            if (item.gameObject.TryGetComponent<Player>(out Player p))
-                p.Hit(gameObject.name);
-        }
+        base.Punch();
     }
-    private void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey(ControlSet + "-Punch")))
-        {
-            Punch();
-        }
-        blocking = Input.GetKey(Controls.Scheme.GetCodeFromKey(ControlSet + "-Block"));
-
+        base.Update();
     }
 }
