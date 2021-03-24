@@ -1,19 +1,21 @@
 ﻿using PrincessApollo.Controls;
 using UnityEngine;
+using UnityEngine.UI;
 using static System.Convert;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Vector3 velocity;
-    public Vector3 staticVelocity;
+    [SerializeField] Vector3 velocity;
     [Space(20)]
-    public float movementSpeedMultiplier = 10;
-    Rigidbody2D rb;
+    [SerializeField] float movementSpeedMultiplier = 10;
+    
+    bool isGrounded;
+    float dashRange = 0.5f, dashSwitch = 1, dashVelocity, savedDir = 1, jumpForce = 80;
+    
+    Rigidbody2D rb; 
+    BoxCollider2D v_coll;
+    Vector2 o_coll;
 
-    public bool isGrounded; float jumpForce = 80;
-
-    public float savedDir = 1;
-    public float dashRange = 0.5f, dashSwitch;
     private enum State
     {
         Normal,
@@ -29,9 +31,16 @@ public class PlayerMovement : MonoBehaviour
     private KeySets controlSet;
     [SerializeField]
     private State activeState;
+
+    //TEMP??
+    public Text tt;
+    public Slider sl;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        v_coll = GetComponent<BoxCollider2D>();
+
+        o_coll = v_coll.size;
     }
     public void resetVelocity()
     {
@@ -39,18 +48,32 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        #region ???
         if (velocity.x != 0)
         {
             savedDir = velocity.x / Mathf.Abs(velocity.x);
         }
+        if(savedDir <= 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        #endregion
+        rb.velocity = new Vector2(velocity.x + dashVelocity * savedDir, rb.velocity.y);
 
         switch (activeState)
         {
             case State.Normal:
-                staticVelocity = rb.velocity;
 
+                //TEMP??
+                sl.value += Time.deltaTime;
+
+                tt.text = " STATE = NORMAL";
+                dashVelocity = 0;
                 velocity.x = (ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Right"))) - ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Left")))) * movementSpeedMultiplier;
-                rb.velocity = new Vector2(velocity.x, rb.velocity.y);
 
                 if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) && isGrounded)
                 {
@@ -58,23 +81,49 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 #region transitions
-                if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Dash")))
+                if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Dash")) && sl.value > 1)
                 {
                     dashSwitch = dashRange;
-                    //activeState = State.Dashing;
-                }
+                    activeState = State.Dashing;
 
+                    sl.value--;
+                }
                 if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Back")))
                 {
-                    //activeState = State.Crouching;
+                    activeState = State.Crouching;
+                }
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    activeState = State.Crouching;
+                }
+                break;
+            case State.Dashing:
+                tt.text = "STATE = DASHING";
+
+                dashVelocity = 20;
+                dashSwitch -= Time.deltaTime * 3.5f;
+
+                if(dashSwitch <= 0)
+                {
+                    dashSwitch = 1;
+                    activeState = State.Normal;
+                }
+                break;
+            case State.Crouching:
+                tt.text = "STATE = CROUCING";
+
+                v_coll.size = new Vector2(o_coll.x, 5);
+                v_coll.offset = Vector2.up * -2.5f;
+                resetVelocity();
+
+                if (Input.GetKeyUp(KeyCode.LeftControl))
+                {
+                    v_coll.size = o_coll;
+                    v_coll.offset = Vector2.zero;
+                    activeState = State.Normal;
                 }
                 break;
                 #endregion
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, GetComponentInChildren<BoxCollider2D>().size);
     }
 }

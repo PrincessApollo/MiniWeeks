@@ -13,6 +13,6 @@ public class camera : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.position.x, cameraOffsetY, -1);
-        distance = Vector2.Distance(player1.position, player2.position);
+        //distance = Vector2.Distance(player1.position, player2.position);
     }
 }
