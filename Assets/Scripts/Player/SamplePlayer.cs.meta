@@ -3,7 +3,12 @@ guid: 55314e3124b52dd4a98d06a1cc0dce0a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - EquipedWeapon: {instanceID: 0}
+  - ReachRegion: {instanceID: 0}
+  - AudioSource: {instanceID: 0}
+  - PunchClip: {fileID: 8300000, guid: 39c02ab3e30889b4c8daff9803cf4239, type: 3}
+  - BlockClip: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

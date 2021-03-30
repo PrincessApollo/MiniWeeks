@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     //public Weapon EquipedWeapon;
     public Collider2D ReachRegion;
+    public bool Blocking { get; protected set; }
     public PlayerMovement.KeySets ControlSet;
     public PlayerMovement Movement;
     [Header("Audio")]
@@ -25,14 +26,22 @@ public class Player : MonoBehaviour
     }
     public virtual void Punch()
     {
+        AudioSource.PlayOneShot(PunchClip);
+
     }
     public virtual void Hit(Player source = null)
     {
+        Debug.Log($"{gameObject.name} was hit by {source.name}");
+
+
     }
     public virtual void OnBlocked()
     {
+        AudioSource.PlayOneShot(BlockClip);
+
     }
     protected virtual void Update()
     {
+        transform.localScale = new Vector2(transform.localScale.x * Movement.savedDir, transform.localScale.y);
     }
 }

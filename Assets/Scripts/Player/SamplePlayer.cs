@@ -11,13 +11,18 @@ using Extensions;
 */
 public class SamplePlayer : Player
 {
-    public override void Hit(string source = "Unknown")
+    public override void Hit(Player source = null)
     {
-        Debug.Log($"{gameObject.name} was hit by {source}");
-        if (!blocking)
+        if (!Blocking)
         {
-            Debug.Log($"{gameObject.name} blocked a hit by {source}");
+
+            Debug.Log($"{gameObject.name} blocked a hit by {source.name}");
             this.Respawn();
+            base.Hit(source);
+        }
+        else
+        {
+            OnBlocked();
         }
     }
 
@@ -25,19 +30,24 @@ public class SamplePlayer : Player
     {
         Collider2D[] results = new Collider2D[100];
         ReachRegion.OverlapCollider(new ContactFilter2D(), results);
-        foreach (Collider2D item in results.Where(x => (x != null && x.gameObject.TryGetComponent<Player>(out Player p))))
+        foreach (Collider2D pCollider in results.Where(x => (x != null && x.gameObject.TryGetComponent<Player>(out Player p))))
         {
-            if (item.gameObject.TryGetComponent<Player>(out Player p))
-                p.Hit(gameObject.name);
+            if (pCollider.gameObject.TryGetComponent<Player>(out Player p))
+                foreach (Collider2D rCollider in results.Where(x => (x != null && x.gameObject.TryGetComponent<ReachRegion>(out ReachRegion r))))
+                {
+                    if (rCollider.gameObject.TryGetComponent<ReachRegion>(out ReachRegion r) && p.Blocking)
+                        p.Hit(this);
+                }
         }
+        base.Punch();
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey(ControlSet + "-Punch")))
         {
             Punch();
         }
-        blocking = Input.GetKey(Controls.Scheme.GetCodeFromKey(ControlSet + "-Block"));
-
+        Blocking = Input.GetKey(Controls.Scheme.GetCodeFromKey(ControlSet + "-Block"));
     }
 }
