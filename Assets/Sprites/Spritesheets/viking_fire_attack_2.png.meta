@@ -1,0 +1,425 @@
+fileFormatVersion: 2
+guid: 309f6afd67716ab41949eb9d3be05115
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2777764783469641442
+    second: viking_fire_attack_2_0
+  - first:
+      213: -7082493682012623076
+    second: viking_fire_attack_2_1
+  - first:
+      213: -1402596953535271473
+    second: viking_fire_attack_2_2
+  - first:
+      213: -237848065367423818
+    second: viking_fire_attack_2_3
+  - first:
+      213: 1251159304089876698
+    second: viking_fire_attack_2_4
+  - first:
+      213: -3131420225191349443
+    second: viking_fire_attack_2_5
+  - first:
+      213: -2711492484350315932
+    second: viking_fire_attack_2_6
+  - first:
+      213: 1664538405624252267
+    second: viking_fire_attack_2_7
+  - first:
+      213: 3707299824010993129
+    second: viking_fire_attack_2_8
+  - first:
+      213: 626211576745481883
+    second: viking_fire_attack_2_9
+  - first:
+      213: 7750944170348234751
+    second: viking_fire_attack_2_10
+  - first:
+      213: 4217747086642886643
+    second: viking_fire_attack_2_11
+  - first:
+      213: -6535896369071956086
+    second: viking_fire_attack_2_12
+  - first:
+      213: 5971069817150738159
+    second: viking_fire_attack_2_13
+  - first:
+      213: -1985794906004949325
+    second: viking_fire_attack_2_14
+  - first:
+      213: -8472371014253612737
+    second: viking_fire_attack_2_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: viking_fire_attack_2_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 336
+        width: 33
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee3c447a5a9c8620800000000000000
+      internalID: 2777764783469641442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 336
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f60b7558de5bd90800000000000000
+      internalID: -7082493682012623076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_2
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 336
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd2c758089f88ce0800000000000000
+      internalID: -1402596953535271473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 252
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b4c249d17ef2bcf0800000000000000
+      internalID: -237848065367423818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_4
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 252
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad8b3b512c20d5110800000000000000
+      internalID: 1251159304089876698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_5
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 252
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33fefa65e5fa84d0800000000000000
+      internalID: -3131420225191349443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 168
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 462782b93f7de5ad0800000000000000
+      internalID: -2711492484350315932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_7
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 168
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b678a3e5cd0a91710800000000000000
+      internalID: 1664538405624252267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_8
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 168
+        width: 29
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ed1b0e3c89f27330800000000000000
+      internalID: 3707299824010993129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_10
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 84
+        width: 29
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7cd7b18a2e09b60800000000000000
+      internalID: 7750944170348234751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_11
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 84
+        width: 26
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7b9c3f0a2788a30800000000000000
+      internalID: 4217747086642886643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_14
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 0
+        width: 33
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b67bcedd0a0174e0800000000000000
+      internalID: -1985794906004949325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viking_fire_attack_2_15
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 0
+        width: 33
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31f81a73771c6a80800000000000000
+      internalID: -8472371014253612737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
