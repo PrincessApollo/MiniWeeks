@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeedMultiplier = 10;
     
     bool isGrounded;
-    float dashRange = 0.5f, dashSwitch = 1, dashVelocity, savedDir = 1, jumpForce = 80;
+    float dashRange = 0.5f, dashSwitch = 1, dashVelocity, savedDir = 1, jumpForce = 200;
     
     Rigidbody2D rb; 
     BoxCollider2D v_coll;
@@ -70,12 +70,14 @@ public class PlayerMovement : MonoBehaviour
 
                 //TEMP??
                 sl.value += Time.deltaTime;
+                //
 
                 tt.text = " STATE = NORMAL";
+
                 dashVelocity = 0;
                 velocity.x = (ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Right"))) - ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Left")))) * movementSpeedMultiplier;
 
-                if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) && isGrounded)
+                if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) && rb.velocity.y > 0 || Input.GetKeyDown(KeyCode.Space) && rb.velocity.y >= 0)
                 {
                     rb.AddForce(jumpForce * transform.up);
                 }
