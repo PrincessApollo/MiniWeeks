@@ -9,11 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [Space(20)]
     [SerializeField] float movementSpeedMultiplier = 10;
     
-    bool isGrounded;
-    float dashRange = 0.5f, dashSwitch = 1, dashVelocity, savedDir = 1, jumpForce = 80;
+    float dashRange = 0.5f, dashSwitch = 1, dashVelocity, savedDir = 1, jumpForce = 200;
     
     Rigidbody2D rb; 
     BoxCollider2D v_coll;
+    Animator a_anim;
+
     Vector2 o_coll;
 
     private enum State
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         v_coll = GetComponent<BoxCollider2D>();
+        a_anim = GetComponent<Animator>();
 
         o_coll = v_coll.size;
     }
@@ -61,6 +63,20 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
+
+        if(velocity.x == 0)
+        {
+            if(activeState != State.Crouching)
+            {
+                tt.text = " STATE = IDLE";
+            }
+
+            if (activeState == State.Normal)
+            {
+                a_anim.SetTrigger("Idle");
+            }
+        }
+
         #endregion
         rb.velocity = new Vector2(velocity.x + dashVelocity * savedDir, rb.velocity.y);
 
@@ -70,12 +86,19 @@ public class PlayerMovement : MonoBehaviour
 
                 //TEMP??
                 sl.value += Time.deltaTime;
+                //
 
-                tt.text = " STATE = NORMAL";
-                dashVelocity = 0;
+                if (velocity.x != 0)
+                {
+                    tt.text = " STATE = NORMAL";
+                    a_anim.SetTrigger("Walking");
+                }
+
                 velocity.x = (ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Right"))) - ToInt32(Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Left")))) * movementSpeedMultiplier;
 
-                if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) && isGrounded)
+                dashVelocity = 0;
+
+                if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) && rb.velocity.y > 0 || Input.GetKeyDown(KeyCode.Space) && rb.velocity.y >= 0)
                 {
                     rb.AddForce(jumpForce * transform.up);
                 }
@@ -88,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
                     sl.value--;
                 }
-                if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Back")))
+                if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Back")) && rb.velocity.y == 0 || Input.GetKeyDown(KeyCode.LeftControl) && rb.velocity.y >= 0)
                 {
                     activeState = State.Crouching;
                 }
@@ -111,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Crouching:
                 tt.text = "STATE = CROUCING";
+                a_anim.SetBool("Crouching", true);
 
                 v_coll.size = new Vector2(o_coll.x, 5);
                 v_coll.offset = Vector2.up * -2.5f;
@@ -121,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
                     v_coll.size = o_coll;
                     v_coll.offset = Vector2.zero;
                     activeState = State.Normal;
+                    a_anim.SetBool("Crouching", false);
                 }
                 break;
                 #endregion
