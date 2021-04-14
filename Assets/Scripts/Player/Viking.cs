@@ -6,15 +6,6 @@
 */
 public class Viking : Player
 {
-    public override void BlockedHit(string source = "Unknown")
-    {
-        base.BlockedHit(source);
-    }
-
-    public override void Hit(string source = "Unknown")
-    {
-        base.Hit(source);
-    }
 
     public override void Punch()
     {

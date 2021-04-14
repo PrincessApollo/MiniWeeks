@@ -8,14 +8,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector3 velocity;
     [Space(20)]
     [SerializeField] float movementSpeedMultiplier = 10;
-    
-    float dashRange = 0.5f, dashSwitch = 1, dashVelocity, savedDir = 1, jumpForce = 200;
+
+    float dashRange = 1f, dashSwitch = 1, dashVelocity;
+    public float savedDir = 1, jumpForce = 200;
     
     Rigidbody2D rb; 
     BoxCollider2D v_coll;
     Animator a_anim;
-
-    Vector2 o_coll;
 
     private enum State
     {
@@ -41,8 +40,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         v_coll = GetComponent<BoxCollider2D>();
         a_anim = GetComponent<Animator>();
-
-        o_coll = v_coll.size;
     }
     public void resetVelocity()
     {
@@ -98,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
                 dashVelocity = 0;
 
-                if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) && rb.velocity.y > 0 || Input.GetKeyDown(KeyCode.Space) && rb.velocity.y >= 0)
+                if (Input.GetKey(Controls.Scheme.GetCodeFromKey($"{controlSet}-Forward")) || Input.GetKeyDown(KeyCode.Space) && rb.velocity.y >= 0)
                 {
                     rb.AddForce(jumpForce * transform.up);
                 }
@@ -107,13 +104,14 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Dash")) && sl.value > 1)
                 {
                     dashSwitch = dashRange;
+                    a_anim.SetBool("isDashing", true);
                     activeState = State.Dashing;
 
                     sl.value--;
                 }
-                if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Back")) && rb.velocity.y == 0 || Input.GetKeyDown(KeyCode.LeftControl) && rb.velocity.y >= 0)
+                if (Input.GetKeyDown(Controls.Scheme.GetCodeFromKey($"{controlSet}-Back")) && rb.velocity.y == 0 && rb.velocity.y >= 0)
                 {
-                    activeState = State.Crouching;
+                    //activeState = State.Crouching;
                 }
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
@@ -122,13 +120,22 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Dashing:
                 tt.text = "STATE = DASHING";
-
-                dashVelocity = 20;
-                dashSwitch -= Time.deltaTime * 3.5f;
-
+                newDashTImer -= Time.deltaTime;
+                if(newDashTImer <= 0)
+                {
+                    dashVelocity = 60;
+                    dashSwitch -= Time.deltaTime * 3.5f;
+                }
+                else
+                {
+                    resetVelocity();
+                    dashVelocity = 0;
+                }
                 if(dashSwitch <= 0)
                 {
+                    newDashTImer = .7f;
                     dashSwitch = 1;
+                    a_anim.SetBool("isDashing", false);
                     activeState = State.Normal;
                 }
                 break;
@@ -136,14 +143,10 @@ public class PlayerMovement : MonoBehaviour
                 tt.text = "STATE = CROUCING";
                 a_anim.SetBool("Crouching", true);
 
-                v_coll.size = new Vector2(o_coll.x, 5);
-                v_coll.offset = Vector2.up * -2.5f;
                 resetVelocity();
 
                 if (Input.GetKeyUp(KeyCode.LeftControl))
                 {
-                    v_coll.size = o_coll;
-                    v_coll.offset = Vector2.zero;
                     activeState = State.Normal;
                     a_anim.SetBool("Crouching", false);
                 }
@@ -151,4 +154,5 @@ public class PlayerMovement : MonoBehaviour
                 #endregion
         }
     }
+    float newDashTImer = .7f;
 }

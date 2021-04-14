@@ -1396,11 +1396,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3527941648032656468}
-  - component: {fileID: 3527941648032656467}
   - component: {fileID: 3527941648032656470}
   - component: {fileID: 3527941648032656471}
   - component: {fileID: 3527941648032656466}
   - component: {fileID: 3527941648032656465}
+  - component: {fileID: 3527941648032656467}
   m_Layer: 0
   m_Name: player1
   m_TagString: Untagged
@@ -1466,7 +1466,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b2984224045c24c498ff7a1771602465, type: 3}
+  m_Sprite: {fileID: -7906299194709628605, guid: 8b57a612fcb915a42bd5a979cb5f87fa,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1494,14 +1495,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.9, y: 9.94}
+    oldSize: {x: 0.33, y: 0.63}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 9.888479}
+  m_Size: {x: 0.33, y: 0.63}
   m_EdgeRadius: 0
 --- !u!4 &3527941648032656468
 Transform:
@@ -1512,7 +1513,7 @@ Transform:
   m_GameObject: {fileID: 3527941648032656464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 2078250948}
   m_Father: {fileID: 0}
@@ -1532,6 +1533,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   movementSpeedMultiplier: 10
+  savedDir: 1
+  jumpForce: 200
   controlSet: 0
   activeState: 0
   tt: {fileID: 737638738}

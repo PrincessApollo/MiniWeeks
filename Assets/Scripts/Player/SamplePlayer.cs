@@ -4,6 +4,11 @@
     ***
     Not meant to make it into any part of the final product
 */
+using Extensions;
+using PrincessApollo.Controls;
+using System.Linq;
+using UnityEngine;
+
 public class SamplePlayer : Player
 {
     public override void Hit(Player source = null)
